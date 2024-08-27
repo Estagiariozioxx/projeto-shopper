@@ -4,12 +4,15 @@ services:
     build: .
     ports:
       - '3000:3000'
+      - '5555:5555'
     env_file:
       - .env
     volumes:
       - .:/app
     depends_on:
       - db
+    entrypoint: ["sh", "-c", "yarn prisma migrate deploy && yarn prisma generate && yarn dev"]
+
 
   db:
     image: postgres:13

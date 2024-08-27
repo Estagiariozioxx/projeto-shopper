@@ -1,10 +1,11 @@
-//import WaterGasController from "controllers/WaterGasControllerController";
+import WaterGasController from "../controllers/WaterGasController";
+import {validation} from "../middlewares/validation"
 import { Router } from "express"
 
 
 const routes = Router();
-//const agendarDoacaoController = new AgendarDoacaoController();
+const waterGasController = new WaterGasController();
 
-//routes.post('/cadastrar',agendarDoacaoController.create);
+routes.post('/upload',validation,waterGasController.create);
 
 export default routes;

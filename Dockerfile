@@ -7,11 +7,17 @@ WORKDIR /app
 COPY package*.json ./
 RUN yarn install
 
+
 # Copiar o restante dos arquivos
 COPY . .
 
 # Compilar o projeto
 RUN yarn run build
+
+#RUN yarn prisma migrate deploy
+RUN yarn prisma generate
+
+
 
 # Expor a porta da aplicação
 EXPOSE 3000
