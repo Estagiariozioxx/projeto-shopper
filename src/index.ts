@@ -2,7 +2,7 @@ import express from "express";
 import cors from 'cors';
 //import { authentication } from "middlewares/auth";
 //import { DateTime } from "luxon";
-import WaterGasRoute from "routes/WaterGasRoute";
+import WaterGasRoute from "./routes/WaterGasRoute";
 
 const app = express();
 
@@ -15,4 +15,4 @@ app.get("/", (req, res) => {
 
 app.use("/upload", WaterGasRoute);
 
-//app.listen(process.env.PORT || 3344);
+app.listen(process.env.PORT || 3000);
