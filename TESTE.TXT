@@ -1,2 +1,3 @@
 ARRUMAR RETORNO DO GEMINI CASO DER ERRO
 ARRUMAR PARA APAGAR IMAGENS
+verificar se o customer code se aplica na clasula where

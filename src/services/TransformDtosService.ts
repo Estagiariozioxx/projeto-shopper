@@ -1,4 +1,4 @@
-import  {MensureIn, MensureSave, MensureOut}  from "dtos/MensureDtos";
+import  {MensureIn, MensureSave, MensureOut}  from "dtos/MensureUploadDtos";
 import { Measure } from '@prisma/client';
 
 

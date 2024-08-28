@@ -13,12 +13,12 @@ app.get("/", (req, res) => {
   return res.send("Hello World");
 });
 
-//app.use("/upload", WaterGasRoute);
-app.use('/', (req, res, next) => {
+app.use('/', waterGasRoute);
+/*app.use('/', (req, res, next) => {
   console.log(`Request method: ${req.method}`);
   console.log(`Request URL: ${req.url}`);
   next();
-}, waterGasRoute);
+}, waterGasRoute);*/
 
 //app.listen(process.env.PORT || 3000);
 

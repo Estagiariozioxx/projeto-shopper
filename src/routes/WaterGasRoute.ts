@@ -1,5 +1,5 @@
 import WaterGasController from "../controllers/WaterGasController";
-import {validation} from "../middlewares/validation"
+import {validationUpload,validationConfirm} from "../middlewares/validation"
 import { Router } from "express"
 
 
@@ -12,7 +12,12 @@ console.log("entrei");
 routes.post('/upload', (req, res, next) => {
     console.log(`POST /upload request received`);
     next();
-  }, validation, waterGasController.create);
+  }, validationUpload, waterGasController.create);
+
+  routes.patch('/confirm', (req, res, next) => {
+    console.log(`patch /confirm request received`);
+    next();
+  }, validationConfirm, waterGasController.confirm);
 
 
 export default routes;

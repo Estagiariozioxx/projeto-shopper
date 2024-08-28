@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import  {MensureIn, MensureSave, MensureOut}  from "dtos/MensureDtos";
+import  {MensureIn, MensureSave, MensureOut}  from "dtos/MensureUploadDtos";
+import { MensureConfirmIn,MensureConfirmOut } from "dtos/MensureConfirmDtos";
 import WaterGasModel from "../models/WaterGasModel";
 import {ValidationError} from "../services/Error"
 import {saveBase64ImageService} from "../services/MeasureImageService"
@@ -33,9 +34,39 @@ export default class WaterGasController{
 
         }
         else{
-            return ValidationError(res, "DOUBLE_REPORT","Leitura do mês já realizada");
+            return ValidationError(res, "DOUBLE_REPORT","Leitura do mês já realizada",409);
         }
         
          
-      };
+    };
+
+
+    confirm = async (req: Request, res: Response) => {
+        
+
+        const mensureConfirm:MensureConfirmIn = req.body;
+
+        const verifyMeasurereading = await waterGasModel.verifyMeasureReading(mensureConfirm);
+
+        if(verifyMeasurereading.length == 0){
+            return ValidationError(res, "MEASURE_NOT_FOUND","Leitura do mês já realizada",404);
+        }
+        else{
+            const verifyMeasureconfirm = await waterGasModel.verifyMeasureConfirmed(mensureConfirm);
+
+            if(verifyMeasureconfirm.length == 0){
+                return ValidationError(res, "MEASURE_NOT_FOUND","Leitura do mês já realizada",409);
+            }
+            else{
+
+                const measureUpdateConfirm = await waterGasModel.measureUpdateConfirm(mensureConfirm);
+                res.status(200).json(measureUpdateConfirm);
+
+            }
+
+
+        }
+        
+         
+    };
 }
