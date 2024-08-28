@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@google/generative-ai": "^0.17.1",
     "@prisma/client": "5.19.0",
     "@types/node": "^22.5.0",
     "axios": "^1.7.5",
@@ -15,13 +16,16 @@
     "install": "^0.13.0",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
+    "@types/uuid": "^10.0.0",
     "prisma": "^5.19.0",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "tsconfig-paths": "^4.2.0"
   },
   "scripts": {
     "prebuild": "rimraf dist",

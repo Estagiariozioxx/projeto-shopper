@@ -13,7 +13,7 @@ export function validation(req: Request, res: Response, next: NextFunction) {
   }
 
 
-  if (!body.custumer_cod || typeof body.custumer_cod !== "string") {
+  if (!body.custumer_code || typeof body.custumer_code !== "string") {
     return ValidationError(res,"INVALID_DATA", "O campo 'custumer_cod' é obrigatório e deve ser uma string.");
   }
 
@@ -25,6 +25,13 @@ export function validation(req: Request, res: Response, next: NextFunction) {
  
   if (!body.measure_type || (body.measure_type !== "WATER" && body.measure_type !== "GAS")) {
     return ValidationError(res, "INVALID_DATA","O campo 'measure_type' é obrigatório e deve ser 'WATER' ou 'GAS'.");
+  }
+
+
+  const base64Regex = /^data:image\/(png|jpeg|jpg|webp|heic|heif);base64,[A-Za-z0-9+/=]+$/;
+
+  if (!base64Regex.test(body.image)) {
+    return ValidationError(res, "INVALID_DATA", "O campo 'image' é inválido. A imagem deve estar em um dos formatos permitidos: PNG, JPEG, WEBP, HEIC, HEIF.");
   }
 
   next();

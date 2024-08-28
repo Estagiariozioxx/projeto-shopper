@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { startOfMonth, endOfMonth } from "date-fns";
-import { MensureIn } from "dtos/MensureDtos";
+import { MensureIn,MensureSave } from "dtos/MensureDtos";
 
 const prisma = new PrismaClient();
 
@@ -8,12 +8,20 @@ export default class WaterGasModel{
 
     verifyMeasureDate = async (measure:MensureIn) =>{
 
-        const startDate = startOfMonth(new Date());
-        const endDate = endOfMonth(new Date());
+    
+      
+      // Obter o início e o fim do mês da data recebida
+      const startDate = startOfMonth(measure.measure_datetime); // Início do mês
+      const endDate = endOfMonth(measure.measure_datetime);     // Fim do mês
+
+      console.log(startDate)
+      console.log(endDate)
+
 
         return await prisma.measure.findMany({
             where: {
-            customerCode:measure.custumer_cod,
+            customerCode:measure.custumer_code,
+            measureType:measure.measure_type,
             measureDatetime: {
                 gte: startDate,
                 lte: endDate,
@@ -21,6 +29,20 @@ export default class WaterGasModel{
             },
         });
     }
+
+
+    createMeasure = async (measureSave: MensureSave) => {
+        return await prisma.measure.create({
+          data: {
+            customerCode: measureSave.customerCode,
+            measureDatetime: measureSave.measureDatetime,
+            measureType: measureSave.measureType,
+            imageUrl: measureSave.imageUrl,
+            measureValue: measureSave.measureValue
+          }
+        });
+      }
+      
 
 
 }

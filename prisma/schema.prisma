@@ -20,8 +20,7 @@ model Measure {
   measureDatetime DateTime
   measureType    MeasureType
   imageUrl       String
-  measureValue   Int
-  measureUuid    String   @unique
+  measureValue   String
   hasConfirmed   Boolean  @default(false)
 }
 
