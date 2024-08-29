@@ -20,9 +20,11 @@ model Measure {
   measureDatetime DateTime
   measureType    MeasureType
   imageUrl       String
-  measureValue   String
+  measureValue   Int
   hasConfirmed   Boolean  @default(false)
 }
+
+
 
 enum MeasureType {
   WATER

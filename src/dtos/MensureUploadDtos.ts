@@ -16,5 +16,5 @@ export interface MensureIn {
     measureDatetime: Date,
     measureType:  'WATER' | 'GAS';
     imageUrl:      string,
-    measureValue:   string
+    measureValue:   number
   }

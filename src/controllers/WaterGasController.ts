@@ -5,7 +5,8 @@ import WaterGasModel from "../models/WaterGasModel";
 import {ValidationError} from "../services/Error"
 import {saveBase64ImageService} from "../services/MeasureImageService"
 import { GemininiUploadService } from "../services/GeminiService";
-import { transformToMensureSave,transformToMensureOut} from "../services/TransformDtosService";
+import { transformToMensureSave,transformToMensureOut,transformToMensureConfirm, transformToMensureList} from "../services/TransformDtosService";
+import {MeasureType, MeasureList} from "../dtos/MensureListDtos"
 
 
 const waterGasModel = new WaterGasModel();
@@ -60,13 +61,38 @@ export default class WaterGasController{
             else{
 
                 const measureUpdateConfirm = await waterGasModel.measureUpdateConfirm(mensureConfirm);
-                res.status(200).json(measureUpdateConfirm);
+
+                const measureconfirmout : MensureConfirmOut = await transformToMensureConfirm(true)
+                res.status(200).json(measureconfirmout);
 
             }
-
-
         }
-        
-         
+           
+    };
+
+    list = async (req: Request, res: Response) => {
+        const { customerCode } = req.params as { customerCode: string };
+        const { measureType } = req.query as { measureType: MeasureType };
+        const measureList: MeasureList =await transformToMensureList(customerCode,measureType);
+
+        const measurelist = await waterGasModel.measureList(measureList);
+        console.log("customerCode: "+ customerCode)
+
+        if (measurelist.length > 0) {
+            const response = {
+                customer_code: "measureList.customerCode",
+                measures: measurelist.map(measure => ({
+                    measure_uuid: measure.id,
+                    measure_datetime: measure.measureDatetime,
+                    measure_type: measure.measureType,
+                    has_confirmed: measure.hasConfirmed,
+                    image_url: measure.imageUrl,
+                }))
+            };
+            return res.status(200).json(response);
+        } else {
+            return ValidationError(res, "MEASURE_NOT_FOUND","Nenhuma leitura encontrada",404);
+        }
+           
     };
 }

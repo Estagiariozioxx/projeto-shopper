@@ -2,6 +2,8 @@ import { Response, Request, NextFunction } from "express";
 import  {MensureIn}  from "dtos/MensureUploadDtos";
 import  {MensureConfirmIn}  from "dtos/MensureConfirmDtos";
 import {ValidationError} from "../services/Error"
+import { MeasureList } from "dtos/MensureListDtos";
+
 
 
 
@@ -55,3 +57,18 @@ export function validationConfirm(req: Request, res: Response, next: NextFunctio
 
   next();
 }
+
+export function validationList(req: Request, res: Response, next: NextFunction) {
+    const { customerCode } = req.params;
+    const { measureType } = req.query as { measureType: string };
+    console.log("customerCode: "+ customerCode)
+
+    if (measureType && !['WATER', 'GAS'].includes(measureType.toUpperCase())) {
+
+      return ValidationError(res,"INVALID_TYPE", "Tipo de medição não permitida",400);
+    }
+
+    next();
+}
+
+

@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { startOfMonth, endOfMonth } from "date-fns";
 import { MensureIn,MensureSave } from "dtos/MensureUploadDtos";
 import { MensureConfirmIn } from "dtos/MensureConfirmDtos";
+import { MeasureList } from "dtos/MensureListDtos";
 
 const prisma = new PrismaClient();
 
@@ -55,6 +56,7 @@ export default class WaterGasModel{
   
           return await prisma.measure.findMany({
               where: {
+                id:measure.measure_uuid,
                 hasConfirmed:false
               }
           });
@@ -67,10 +69,24 @@ export default class WaterGasModel{
               id:measure.measure_uuid
             },
             data:{
-              hasConfirmed:true
+              hasConfirmed:true,
+              measureValue:measure.confirmed_value
             }
 
           })
+
+        }
+
+        measureList = async (measureList:MeasureList) => {
+
+            return await prisma.measure.findMany({
+              where: {
+                  customerCode: measureList.customerCode,
+                  ...(measureList.measureType && { 
+                      measureType: measureList.measureType
+                  })
+              },
+          });
 
         }
       
