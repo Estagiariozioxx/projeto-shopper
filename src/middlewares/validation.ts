@@ -59,11 +59,10 @@ export function validationConfirm(req: Request, res: Response, next: NextFunctio
 }
 
 export function validationList(req: Request, res: Response, next: NextFunction) {
-    const { customerCode } = req.params;
-    const { measureType } = req.query as { measureType: string };
-    console.log("customerCode: "+ customerCode)
+    const customerCode: string  = req.params.custumerCode;
+    const measureType = req.query.measure_type;
 
-    if (measureType && !['WATER', 'GAS'].includes(measureType.toUpperCase())) {
+    if (measureType && !['WATER', 'GAS'].includes(measureType.toString().toUpperCase())) {
 
       return ValidationError(res,"INVALID_TYPE", "Tipo de medição não permitida",400);
     }

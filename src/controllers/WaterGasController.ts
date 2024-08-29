@@ -71,16 +71,17 @@ export default class WaterGasController{
     };
 
     list = async (req: Request, res: Response) => {
-        const { customerCode } = req.params as { customerCode: string };
-        const { measureType } = req.query as { measureType: MeasureType };
+        const customerCode:string  = req.params.custumerCode
+        const measureTypeQuery = req.query.measure_type?.toString().toUpperCase();
+        const measureType: MeasureType = measureTypeQuery as MeasureType;
+            
         const measureList: MeasureList =await transformToMensureList(customerCode,measureType);
 
         const measurelist = await waterGasModel.measureList(measureList);
-        console.log("customerCode: "+ customerCode)
 
         if (measurelist.length > 0) {
             const response = {
-                customer_code: "measureList.customerCode",
+                customer_code: customerCode,
                 measures: measurelist.map(measure => ({
                     measure_uuid: measure.id,
                     measure_datetime: measure.measureDatetime,
