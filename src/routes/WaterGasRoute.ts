@@ -5,7 +5,6 @@ import { Router } from "express"
 
 const routes = Router();
 const waterGasController = new WaterGasController();
-console.log("entrei");
 
 routes.post('/upload',validationUpload,waterGasController.create);
 routes.patch('/confirm',validationConfirm,waterGasController.confirm);
