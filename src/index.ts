@@ -1,8 +1,12 @@
 import express from "express";
 import cors from 'cors';
-//import { authentication } from "middlewares/auth";
-//import { DateTime } from "luxon";
+import path from 'path';
 import waterGasRoute from "./routes/WaterGasRoute";
+
+
+const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+const secretKey = process.env.SECRET_KEY || 'imgtempshopper';
+
 
 const app = express();
 
@@ -14,13 +18,8 @@ app.get("/", (req, res) => {
 });
 
 app.use('/', waterGasRoute);
-/*app.use('/', (req, res, next) => {
-  console.log(`Request method: ${req.method}`);
-  console.log(`Request URL: ${req.url}`);
-  next();
-}, waterGasRoute);*/
 
-//app.listen(process.env.PORT || 3000);
+app.use('/files', express.static(path.join(__dirname, './temp_images')));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

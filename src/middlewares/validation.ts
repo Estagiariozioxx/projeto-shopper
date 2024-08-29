@@ -3,9 +3,11 @@ import  {MensureIn}  from "dtos/MensureUploadDtos";
 import  {MensureConfirmIn}  from "dtos/MensureConfirmDtos";
 import {ValidationError} from "../services/Error"
 import { MeasureList } from "dtos/MensureListDtos";
+import {basename} from 'path';
+import {verify} from 'jsonwebtoken';
 
-
-
+const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+const secretKey = process.env.SECRET_KEY || 'imgtempshopper';
 
 export function validationUpload(req: Request, res: Response, next: NextFunction) {
   const body: Partial<MensureIn> = req.body;
@@ -68,6 +70,22 @@ export function validationList(req: Request, res: Response, next: NextFunction) 
     }
 
     next();
+}
+
+export function validationToken(req: Request, res: Response, next: NextFunction) {
+  const token = req.query.token as string;
+  const fileName = basename(req.path);
+
+  if (!token) {
+    return ValidationError(res,"INVALID_TOKEN", "Token inexistente",400);
+  }
+  
+  try {
+    verify(token, secretKey);
+    next();
+  } catch (error) {
+    return ValidationError(res,"INVALID_TOKEN", "Token inválido",400);
+  }
 }
 
 

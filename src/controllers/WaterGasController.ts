@@ -21,10 +21,10 @@ export default class WaterGasController{
         const verifyMeasureDate = await waterGasModel.verifyMeasureDate(mensure);
 
         if(verifyMeasureDate.length == 0){
-            const filePath = saveBase64ImageService(mensure.image);
-            const measureValue: string = await GemininiUploadService(filePath);
+            const file = saveBase64ImageService(mensure.image);
+            const measureValue: string = await GemininiUploadService(file.filePath);
 
-            const mensureSave: MensureSave = await transformToMensureSave(mensure,filePath,measureValue);
+            const mensureSave: MensureSave = await transformToMensureSave(mensure,file.fileName,measureValue);
 
             const newMeasure = await waterGasModel.createMeasure(mensureSave);
 

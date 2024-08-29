@@ -2,13 +2,13 @@ import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid'; 
 
-export function saveBase64ImageService(base64Image: string): string {
+export function saveBase64ImageService(base64Image: string) {
   const match = base64Image.match(/^data:image\/(\w+);base64,/);
   const imageType = match ? match[1] : 'png'; 
   const fileName = `${uuidv4()}.${imageType}`;
 
 
-  const tempDir = path.join(__dirname, 'temp_images');
+  const tempDir = path.join(__dirname, '../temp_images');
 
   if (!fs.existsSync(tempDir)) {
     fs.mkdirSync(tempDir, { recursive: true });
@@ -22,5 +22,5 @@ export function saveBase64ImageService(base64Image: string): string {
 
   fs.writeFileSync(filePath, imageBuffer);
 
-  return filePath;
+  return {filePath,fileName};
 }
