@@ -13,10 +13,6 @@ export default class WaterGasModel{
       const startDate = startOfMonth(measure.measure_datetime); // Início do mês
       const endDate = endOfMonth(measure.measure_datetime);     // Fim do mês
 
-      console.log(startDate)
-      console.log(endDate)
-
-
         return await prisma.measure.findMany({
             where: {
             customerCode:measure.custumer_code,
@@ -70,7 +66,9 @@ export default class WaterGasModel{
             },
             data:{
               hasConfirmed:true,
-              measureValue:measure.confirmed_value
+              measureValue:measure.confirmed_value,
+              updatedAt:new Date()
+
             }
 
           })

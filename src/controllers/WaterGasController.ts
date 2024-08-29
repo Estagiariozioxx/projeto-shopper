@@ -16,7 +16,6 @@ export default class WaterGasController{
 
     create = async (req: Request, res: Response) => {
         
-
         const mensure:MensureIn = req.body;
 
         const verifyMeasureDate = await waterGasModel.verifyMeasureDate(mensure);

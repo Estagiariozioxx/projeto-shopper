@@ -12,7 +12,6 @@ routes.patch('/confirm',validationConfirm,waterGasController.confirm);
 routes.get('/:custumerCode/list',validationList,waterGasController.list);
 
 /*
-
 routes.post('/upload', (req, res, next) => {
     console.log(`POST /upload request received`);
     next();
