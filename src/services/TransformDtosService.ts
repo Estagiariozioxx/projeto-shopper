@@ -10,7 +10,7 @@ import generateTemporaryUrl from "./GenerateTemporaryUrlService";
 export async function transformToMensureSave(mensure: MensureIn, fileName:string,measureValue:string):Promise <MensureSave> {
 
     return {
-        customerCode: mensure.custumer_code,
+        customerCode: mensure.customer_code,
         measureDatetime: new Date(mensure.measure_datetime), 
         measureType: mensure.measure_type,
         imageUrl: fileName, 
@@ -30,7 +30,7 @@ export async function transformToMensureOut(mensure:Measure):Promise <MensureOut
 
 export async function transformToMensureConfirm(status:boolean):Promise <MensureConfirmOut> {
     return {
-        sucess:status
+        success:status
     };
 }
 

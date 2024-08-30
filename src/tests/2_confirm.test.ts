@@ -27,7 +27,7 @@ describe('PATCH /confirm', () => {
       //  console.log('Response Body:', response.body);
   
       expect(response.status).toBe(200);
-      expect(response.body.sucess).toBe(true);
+      expect(response.body.success).toBe(true);
     });
   
     it('deve retornar 400 se os dados fornecidos forem inválidos', async () => {

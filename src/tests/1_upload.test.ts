@@ -9,7 +9,7 @@ describe('POST /upload', () => {
       .post('/upload')
       .send({
         image: imageBase64,
-        custumer_code: customerCode,
+        customer_code: customerCode,
         measure_datetime: "2024-09-01T12:00:00Z",
         measure_type: "WATER",
       });
@@ -29,7 +29,7 @@ describe('POST /upload', () => {
       .post('/upload')
       .send({
         image: 'not-base64',
-        custumer_code: customerCode,
+        customer_code: customerCode,
         measure_datetime: '2024-09-01T12:00:00Z',
         measure_type: 'WATER',
       });
@@ -45,7 +45,7 @@ describe('POST /upload', () => {
       .post('/upload')
       .send({
         image: imageBase64,
-        custumer_code: customerCode,
+        customer_code: customerCode,
         measure_datetime: '2024-09-01T12:00:00Z',
         measure_type: 'WATER',
       });

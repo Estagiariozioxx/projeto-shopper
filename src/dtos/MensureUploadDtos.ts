@@ -1,6 +1,6 @@
 export interface MensureIn {
     image: string; 
-    custumer_code: string;
+    customer_code: string;
     measure_datetime: string; 
     measure_type: "WATER" | "GAS";
   }

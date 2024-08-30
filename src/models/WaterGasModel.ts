@@ -15,7 +15,7 @@ export default class WaterGasModel{
 
         return await prisma.measure.findMany({
             where: {
-            customerCode:measure.custumer_code,
+            customerCode:measure.customer_code,
             measureType:measure.measure_type,
             measureDatetime: {
                 gte: startDate,

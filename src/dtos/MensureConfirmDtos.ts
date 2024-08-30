@@ -5,6 +5,6 @@ export interface MensureConfirmIn {
 
 
   export interface MensureConfirmOut {
-    sucess: boolean; 
+    success: boolean; 
   }
 

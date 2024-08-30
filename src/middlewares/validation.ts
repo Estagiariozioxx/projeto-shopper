@@ -18,7 +18,7 @@ export function validationUpload(req: Request, res: Response, next: NextFunction
   }
 
 
-  if (!body.custumer_code || typeof body.custumer_code !== "string") {
+  if (!body.customer_code || typeof body.customer_code !== "string") {
     return ValidationError(res,"INVALID_DATA", "O campo 'custumer_cod' é obrigatório e deve ser uma string.",400);
   }
 
