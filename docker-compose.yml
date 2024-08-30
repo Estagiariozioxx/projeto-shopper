@@ -12,6 +12,7 @@ services:
     depends_on:
       - db
     entrypoint: ["sh", "-c", "yarn prisma migrate deploy && yarn prisma generate && yarn dev"]
+    
 
 
   db:

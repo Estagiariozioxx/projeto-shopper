@@ -7,6 +7,17 @@ WORKDIR /app
 COPY package*.json ./
 RUN yarn install
 
+##RUN yarn upgrade
+##RUN yarn install
+
+#RUN yarn global add ts-node-dev
+#RUN yarn global upgrade ts-node-dev
+
+
+
+
+
+
 
 # Copiar o restante dos arquivos
 COPY . .
