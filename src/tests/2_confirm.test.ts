@@ -2,6 +2,7 @@ import request from 'supertest';
 import app from '../index'; 
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
+const customerCode = process.env.CUSTOME_CODE_TEST || "123456";
 
 describe('PATCH /confirm', () => {
   let measureUuid: string;
@@ -10,7 +11,7 @@ describe('PATCH /confirm', () => {
        // Fetch a valid measure UUID from the database
         const measure = await prisma.measure.findFirst({
           where:{
-            customerCode:"123456",
+            customerCode:customerCode,
           }
         });  // Adjust the model and query as necessary
         if (measure) {
@@ -22,8 +23,8 @@ describe('PATCH /confirm', () => {
           measure_uuid: measureUuid,
           confirmed_value: 150,
         });
-        console.log('Response Status:', response.status);
-        console.log('Response Body:', response.body);
+       // console.log('Response Status:', response.status);
+      //  console.log('Response Body:', response.body);
   
       expect(response.status).toBe(200);
       expect(response.body.sucess).toBe(true);
@@ -37,8 +38,8 @@ describe('PATCH /confirm', () => {
           confirmed_value: 'test', 
         });
 
-        console.log('Response Status:', response.status);
-        console.log('Response Body:', response.body);
+       // console.log('Response Status:', response.status);
+      //  console.log('Response Body:', response.body);
   
       expect(response.status).toBe(400);
       expect(response.body.error_code).toBe('INVALID_DATA');
@@ -48,7 +49,7 @@ describe('PATCH /confirm', () => {
       const response = await request(app)
         .patch('/confirm')
         .send({
-          measure_uuid: 'medidanaotemnobanco',
+          measure_uuid: 'notmeasure',
           confirmed_value: 150,
         });
   
@@ -63,8 +64,8 @@ describe('PATCH /confirm', () => {
           measure_uuid: measureUuid,
           confirmed_value: 150,
         });
-        console.log('Response Status:', response.status);
-        console.log('Response Body:', response.body);
+       // console.log('Response Status:', response.status);
+      //  console.log('Response Body:', response.body);
   
       expect(response.status).toBe(409);
       expect(response.body.error_code).toBe('CONFIRMATION_DUPLICATE');
