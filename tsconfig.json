@@ -18,7 +18,8 @@
       "models/*": ["models/*"],
       "routes/*": ["routes/*"],
       "dtos/*": ["dtos/*"],
-      "services/*": ["services/*"]
+      "services/*": ["services/*"],
+      "tests/*": ["tests/*"]
     }
   },
   "include": ["src/**/*.ts"],

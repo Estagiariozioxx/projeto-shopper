@@ -19,13 +19,13 @@ export async function GemininiUploadService(filePath: string): Promise <string>{
     displayName: "gas or water meter",
   });
 
-  console.log(`Uploaded file ${uploadResponse.file.displayName} as: ${uploadResponse.file.uri}`);
+  //console.log(`Uploaded file ${uploadResponse.file.displayName} as: ${uploadResponse.file.uri}`);
 
     const getResponse = await fileManager.getFile(uploadResponse.file.name);
-    console.log(`getresponse ${JSON.stringify(getResponse, null, 2)}`);
+    //console.log(`getresponse ${JSON.stringify(getResponse, null, 2)}`);
 
 
-    console.log(`Retrieved file ${getResponse.displayName} as ${getResponse.uri}`);
+    //console.log(`Retrieved file ${getResponse.displayName} as ${getResponse.uri}`);
 
 
     const model = genAI.getGenerativeModel({

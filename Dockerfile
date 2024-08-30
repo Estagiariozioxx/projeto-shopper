@@ -14,7 +14,7 @@ COPY . .
 # Compilar o projeto
 RUN yarn prisma generate
 
-RUN yarn run build
+##RUN yarn run build
 
 #RUN yarn prisma migrate deploy
 

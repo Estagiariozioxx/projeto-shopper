@@ -55,7 +55,7 @@ export default class WaterGasController{
             const verifyMeasureconfirm = await waterGasModel.verifyMeasureConfirmed(mensureConfirm);
 
             if(verifyMeasureconfirm.length == 0){
-                return ValidationError(res, "MEASURE_NOT_FOUND","Leitura do mês já realizada",409);
+                return ValidationError(res, "CONFIRMATION_DUPLICATE","Leitura do mês já realizada",409);
             }
             else{
 

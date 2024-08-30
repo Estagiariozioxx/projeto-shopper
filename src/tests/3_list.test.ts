@@ -21,7 +21,7 @@ describe('GET /<customer_code>/list', () => {
       const response = await request(app).get('/non-existent-customer/list');
   
       expect(response.status).toBe(404);
-      expect(response.body.error_code).toBe('MEASURES_NOT_FOUND');
+      expect(response.body.error_code).toBe('MEASURE_NOT_FOUND');
     });
   });
   

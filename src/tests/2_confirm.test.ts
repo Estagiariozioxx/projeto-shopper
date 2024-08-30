@@ -1,26 +1,44 @@
 import request from 'supertest';
 import app from '../index'; 
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
 describe('PATCH /confirm', () => {
+  let measureUuid: string;
+   
     it('deve retornar 200 e confirmar a medida com sucesso', async () => {
+       // Fetch a valid measure UUID from the database
+        const measure = await prisma.measure.findFirst({
+          where:{
+            customerCode:"123456",
+          }
+        });  // Adjust the model and query as necessary
+        if (measure) {
+          measureUuid = measure.id;
+        }
       const response = await request(app)
         .patch('/confirm')
         .send({
-          measure_uuid: '123456',
+          measure_uuid: measureUuid,
           confirmed_value: 150,
         });
+        console.log('Response Status:', response.status);
+        console.log('Response Body:', response.body);
   
       expect(response.status).toBe(200);
-      expect(response.body.success).toBe(true);
+      expect(response.body.sucess).toBe(true);
     });
   
     it('deve retornar 400 se os dados fornecidos forem inválidos', async () => {
       const response = await request(app)
         .patch('/confirm')
         .send({
-          measure_uuid: 123456, 
+          measure_uuid: measureUuid, 
           confirmed_value: 'test', 
         });
+
+        console.log('Response Status:', response.status);
+        console.log('Response Body:', response.body);
   
       expect(response.status).toBe(400);
       expect(response.body.error_code).toBe('INVALID_DATA');
@@ -42,9 +60,11 @@ describe('PATCH /confirm', () => {
       const response = await request(app)
         .patch('/confirm')
         .send({
-          measure_uuid: '123456',
+          measure_uuid: measureUuid,
           confirmed_value: 150,
         });
+        console.log('Response Status:', response.status);
+        console.log('Response Body:', response.body);
   
       expect(response.status).toBe(409);
       expect(response.body.error_code).toBe('CONFIRMATION_DUPLICATE');
