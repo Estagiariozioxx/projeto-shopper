@@ -26,7 +26,7 @@ Antes de começar, certifique-se de ter o Docker e o Docker Compose instalados e
 
    ```bash
    git clone <URL_DO_REPOSITORIO>
-   cd <NOME_DO_REPOSITORIO>
+   cd <NOME_DO_REPOSITORIO>```
 
     Crie um arquivo .env na raiz do repositório com o seguinte conteúdo:
 
