@@ -27,10 +27,12 @@ Antes de começar, certifique-se de ter o Docker e o Docker Compose instalados e
    ```bash
    git clone <URL_DO_REPOSITORIO>
    cd <NOME_DO_REPOSITORIO>```
+   
+2. **Crie um arquivo .env na raiz do repositório com o seguinte conteúdo:**
 
-    Crie um arquivo .env na raiz do repositório com o seguinte conteúdo:
+    
 
-    makefile
+    
 
 GEMINI_API_KEY=<sua_chave_da_api>
 
