@@ -42,9 +42,7 @@ Utilize o comando abaixo para criar e iniciar os contêineres necessários para 
 Isso construirá e iniciará todos os serviços necessários para a aplicação com um único comando.
 
 3. **Executar os testes automatizados:**
-
 Para executar a suíte de testes e validar a aplicação, utilize o comando:
-
    ```bash
    yarn test```
 
@@ -52,24 +50,22 @@ Para executar a suíte de testes e validar a aplicação, utilize o comando:
 
 **Endpoints da API**
 
-1. POST /upload
+**1. POST /upload**
 
-    Descrição: Recebe uma imagem de medidor em base64, consulta a API Google Gemini e retorna a medida lida, um link temporário para a imagem e um GUID.
+   **Descrição:** Recebe uma imagem de medidor em base64, consulta a API Google Gemini e retorna a medida lida, um link temporário para a imagem e um GUID.
 
-    Exemplo de Requisição:
-
-    json
-
+   **Exemplo de Requisição:**
+   ```json
     {
       "image": "base64",
       "customer_code": "12345",
       "measure_datetime": "2024-08-30T12:34:56Z",
       "measure_type": "WATER"
-    }
+    }```
 
-2. PATCH /confirm
+**2. PATCH /confirm**
 
-    Descrição: Confirma ou corrige o valor lido pela IA.
+    **Descrição:** Confirma ou corrige o valor lido pela IA.
 
     Exemplo de Requisição:
 
