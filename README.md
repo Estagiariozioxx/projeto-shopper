@@ -29,35 +29,29 @@ Antes de começar, certifique-se de ter o Docker e o Docker Compose instalados e
    cd <NOME_DO_REPOSITORIO>```
    
 2. **Crie um arquivo .env na raiz do repositório com o seguinte conteúdo:**
-
-    
-
-    
-
-GEMINI_API_KEY=<sua_chave_da_api>
+   ```env
+   GEMINI_API_KEY=<sua_chave_da_api>```
 
 Nota: Não compartilhe sua chave pessoal de API.
 
-Suba o ambiente Docker:
-
+3. **Suba o ambiente Docker:**
 Utilize o comando abaixo para criar e iniciar os contêineres necessários para a aplicação:
-
-bash
-
-docker-compose up --build
-
+   ```bash
+   docker-compose up --build```
+   
 Isso construirá e iniciará todos os serviços necessários para a aplicação com um único comando.
 
-Executar os testes automatizados:
+3. **Executar os testes automatizados:**
 
 Para executar a suíte de testes e validar a aplicação, utilize o comando:
 
-bash
+   ```bash
+   yarn test```
 
-    yarn test
+## Como Usar a Aplicação
 
-Como Usar a Aplicação
-Endpoints da API
+**Endpoints da API**
+
 1. POST /upload
 
     Descrição: Recebe uma imagem de medidor em base64, consulta a API Google Gemini e retorna a medida lida, um link temporário para a imagem e um GUID.
