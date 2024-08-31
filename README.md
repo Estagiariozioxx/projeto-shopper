@@ -26,25 +26,25 @@ Antes de começar, certifique-se de ter o Docker e o Docker Compose instalados e
 
    ```bash
    git clone <URL_DO_REPOSITORIO>
-   cd <NOME_DO_REPOSITORIO>```
+   cd <NOME_DO_REPOSITORIO>
    
 2. **Crie um arquivo .env na raiz do repositório com o seguinte conteúdo:**
    ```env
-   GEMINI_API_KEY=<sua_chave_da_api>```
+   GEMINI_API_KEY=<sua_chave_da_api>
 
 Nota: Não compartilhe sua chave pessoal de API.
 
 3. **Suba o ambiente Docker:**
 Utilize o comando abaixo para criar e iniciar os contêineres necessários para a aplicação:
    ```bash
-   docker-compose up --build```
+   docker-compose up --build
    
 Isso construirá e iniciará todos os serviços necessários para a aplicação com um único comando.
 
 3. **Executar os testes automatizados:**
 Para executar a suíte de testes e validar a aplicação, utilize o comando:
    ```bash
-   yarn test```
+   yarn test
 
 ## Como Usar a Aplicação
 
@@ -52,25 +52,26 @@ Para executar a suíte de testes e validar a aplicação, utilize o comando:
 
 **1. POST /upload**
 
-   **Descrição:** Recebe uma imagem de medidor em base64, consulta a API Google Gemini e retorna a medida lida, um link temporário para a imagem e um GUID.
+**Descrição:** Recebe uma imagem de medidor em base64, consulta a API Google Gemini e retorna a medida lida, um link temporário para a imagem e um GUID.
 
-   **Exemplo de Requisição:**
-   ```json
-    {
-      "image": "base64",
-      "customer_code": "12345",
-      "measure_datetime": "2024-08-30T12:34:56Z",
-      "measure_type": "WATER"
-    }```
+**Exemplo de Requisição:**
+```json
+{
+  "image": "base64",
+  "customer_code": "12345",
+  "measure_datetime": "2024-08-30T12:34:56Z",
+  "measure_type": "WATER"
+}
 
-**2. PATCH /confirm**
 
-    **Descrição:** Confirma ou corrige o valor lido pela IA.
-
+**2.PATCH /confirm**
+   
+   **Descrição:** Confirma ou corrige o valor lido pela IA.
+   
     Exemplo de Requisição:
-
+   
     json
-
+   
     {
       "measure_uuid": "abc123",
       "confirmed_value": 456
