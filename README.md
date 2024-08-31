@@ -55,41 +55,39 @@ Para executar a suíte de testes e validar a aplicação, utilize o comando:
 **Descrição:** Recebe uma imagem de medidor em base64, consulta a API Google Gemini e retorna a medida lida, um link temporário para a imagem e um GUID.
 
 **Exemplo de Requisição:**
-```json
-{
-  "image": "base64",
-  "customer_code": "12345",
-  "measure_datetime": "2024-08-30T12:34:56Z",
-  "measure_type": "WATER"
-}
+``json
 
+   {
+     "image": "base64",
+     "customer_code": "12345",
+     "measure_datetime": "2024-08-30T12:34:56Z",
+     "measure_type": "WATER"
+   }
 
 **2.PATCH /confirm**
    
    **Descrição:** Confirma ou corrige o valor lido pela IA.
    
-    Exemplo de Requisição:
+   **Exemplo de Requisição:**
    
-    json
+    ```json
    
     {
       "measure_uuid": "abc123",
       "confirmed_value": 456
     }
 
-3. GET /<customer_code>/list
+**3. GET /<customer_code>/list**
 
-    Descrição: Lista todas as medidas realizadas por um cliente específico.
+   **Descrição:** Lista todas as medidas realizadas por um cliente específico.
 
-    Exemplo de Requisição:
+   **Exemplo de Requisição:**
 
-    bash
+    ``bash
 
     /12345/list?measure_type=water
 
-Contribuindo
+## Contribuindo
 
 Se você deseja contribuir com este projeto, sinta-se à vontade para abrir issues ou enviar pull requests. Para grandes mudanças, por favor, abra um problema primeiro para discutir o que você gostaria de mudar.
-Licença
 
-Este projeto está licenciado sob a [sua licença] - consulte o arquivo LICENSE para obter detalhes.
